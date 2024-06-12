@@ -24,4 +24,5 @@ The configuration settings for the web server host, web server port, websocket h
 - The web server will display the received data from the websocket in real-time.
 
 ## Note
-Make sure to configure the `config.ini` file according to your requirements before running the script.
+- Make sure to configure the `config.ini` file according to your requirements before running the script.
+- The mouse event is not being captured using pyserial as there is no direct way to get mouse data through a serial interface. Instead, the library "pynput" is used to capture mouse events for this project.
