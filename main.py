@@ -63,7 +63,10 @@ async def socket_handler(websocket):
     print("Client connected to socket")
     while True:
         await asyncio.sleep(0.2)
-        await websocket.send(f"{pos[0]}, {pos[1]}")
+        try:
+            await websocket.send(f"{pos[0]}, {pos[1]}")
+        except websockets.exceptions.ConnectionClosedOK:
+            break
 
 
 async def socket():
@@ -73,7 +76,6 @@ async def socket():
 
 
 async def http_server():
-    # pass
     server = ThreadingHTTPServer((config['HttpServer']['Host'], int(config['HttpServer']['Port'])),
                                  SimpleHTTPRequestHandler)
     print(F"Running server on {config['HttpServer']['Host']}:{config['HttpServer']['Host']}")
